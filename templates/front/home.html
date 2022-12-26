@@ -1,0 +1,311 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="{%static 'front/img/apple-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{%static 'front/img/favicon.png' %}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Home</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="{% static 'bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'front/css/gsdk.css' %}" rel="stylesheet"/>
+    <link href="{% static 'front/css/examples.css' %}" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href="{% static 'front/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+</head>
+
+<body class="home">
+
+    <nav class="navbar navbar-inverse navbar-transparent navbar-fixed-top" role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            <button id="menu-toggle" type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            </div>
+        
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul  class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="{% url 'home' %}">
+                                Home
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="{% url 'about' %}">
+                                About Us
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="{% url 'contact' %}">
+                                Contact Us
+                            </a>
+                        </li>
+                </ul>
+                <ul  class="nav navbar-nav navbar-right">
+                        <li>
+
+                            {% if request.user.is_anonymous %}
+                                <a href="{% url 'login' %}">
+                                    Login
+                                </a>
+                            {% else %}
+                                <a href="{% url 'dashboard' %}">
+                                    Dashboard
+                                </a>    
+                            {% endif %}
+                            
+                        </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+
+<div class="wrapper">
+    <div class="parallax filter-black">
+        <div class="parallax-image">
+            <img src="{% static 'front/img/hp.jpg'%}" alt="..." />
+        </div>
+        <div class="small-info">
+            <h1>Selamat Datang</h1>
+            <h3>Silahkan dicek ya spesifikasi hpnya</h3>
+        </div>
+    </div>
+    
+    
+        
+    
+    
+{% for nomor, name, slug, count,detail in mylist%}    
+    <div class="section section-description">
+           <div class="container">
+               <h2 class="section-title">Spesifkasi Smartphone</h2>
+                <div class="space-40"></div>
+                <div class="row">
+                   <div class="col-md-6">
+                      <div class="img-container">
+                          <img src="{% static 'front/img/tekhp.jpg'%}" alt="..." />
+                      </div>
+                   </div>
+                   <div class="col-md-6">
+                       <h5>{{name}}</h5>
+                       <p>
+                        <a href={{detail}}>
+                            Detail
+                        </a></p>
+                        </p>Count : {{count}}</p>
+                        </p style="color : blue;">Nama Device : {{slug}}</p>
+
+                   </div>
+               </div>
+           </div>
+    
+    </div><!-- section -->
+{% endfor %}
+
+    <div class="space-50"></div>
+
+    <div class="section section-features-2 section-gray">
+           <div class="container">
+               <h2 class="section-title">Visi</h2>
+               <div class="row">
+                   <div class="col-md-4">
+                       <div class="info">
+                            <div class="icon icon-azure">
+                                <i class="pe-7s-clock"></i>
+                            </div>
+                            <div class="description">
+                                <h5> Save Quota</h5>
+                                <p class="text-muted">Memudahkan pengguna untuk mengakses dimana aja dan kapan saja tanpa menggunakan internet.</p>
+                            </div>
+                        </div>
+                     </div>
+                      <div class="col-md-4">
+                       <div class="info">
+                            <div class="icon icon-orange">
+                                <i class="pe-7s-gleam"></i>
+                            </div>
+                            <div class="description">
+                                <h5> Fast Responsive</h5>
+                                <p class="text-muted">Memberi kemudahan kepada pengguna dalam mengakses setiap halaman website.</p>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                       <div class="info">
+                            <div class="icon icon-purple">
+                                <i class="pe-7s-call"></i>
+                            </div>
+                            <div class="description">
+                                <h5> Fast Response </h5>
+                                <p class="text-muted">Kami berusaha memaksimalkan dalam menjawab setiap pertanyaan dan keluhan yang diberikan pengguna website.</p>
+                            </div>
+                        </div>
+                     </div>
+               </div>
+           </div>
+    </div><!-- section -->
+
+    <div class="section section-testimonials">
+        <div class="container">
+            <h2 class="section-title">Komentar pengunjung</h2>
+             <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <div class="row">
+                            <div class="col-md-6">
+                                 <div class="card card-plain">
+                                    <div class="content">
+                                            <h4 class="title">Website ini memungkinkan dalam mencari informasi mengenai smartphone ! :)</h4>
+                                         <div class="footer">
+                                            <div class="author">
+                                                   <span> Radu Tintescu </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                             </div>
+                             <div class="col-md-6">
+                                 <div class="card card-plain">
+                                    <div class="content">
+                                            <h4 class="title">Terima kasih telah membuat website ini saya merasa terbantu sekali !!
+                                            </h4>
+                                         <div class="footer">
+                                            <div class="author">
+                                                   <span> Alex Paduraru </span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                             </div>
+                        </div> <!-- end row -->
+                    </div>
+                    <div class="item">
+                      <div class="row">
+                          <div class="col-md-6">
+                                <div class="card card-plain">
+                                    <div class="content">
+                                            <h4 class="title">Website ini sangat membantu saya dalam mencari rekomendasi serta spesifikasi dari hp yang saya butuhkan!!</h4>
+                                         <div class="footer">
+                                            <div class="author">
+                                                <a class="card-link" target="_blank" >
+                                                   <span> Conacel Elena </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                             </div>
+                             <div class="col-md-6">
+                                 <div class="card card-plain">
+                                    <div class="content">
+                                            <h4 class="title">Saya jadi mengerti smartphone seperti apa yang saya butuhkan serta plus minusnya dari smartphone.</h4>
+                                         <div class="footer">
+                                            <div class="author">
+                                                <a class="card-link" target="_blank">
+                                                   <span> Jay Z </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                             </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#testimonials-carousel" data-slide="prev">
+                    <span class="fa fa-angle-left"></span>
+                  </a>
+                  <a class="right carousel-control" href="#testimonials-carousel" data-slide="next">
+                    <span class="fa fa-angle-right"></span>
+                  </a>
+            </div>
+        </div>
+    </div>
+    
+<footer class="footer footer-big footer-black">
+        <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
+
+        <div class="container">
+            <div class="copyright">
+                &copy; 2022 Milenial Teams, made with love
+            </div>
+        </div>
+</footer>
+
+
+</div> <!-- wrapper -->
+</body>
+    <!--  jQuery and Bootstrap core files    -->
+    <script src="{% static 'front/js/jquery.js'%}" type="text/javascript"></script>
+	<script src="{% static 'front/js/jquery-ui.custom.min.js'%}" type="text/javascript"></script>
+	<script src="{% static 'bootstrap3/js/bootstrap.min.js'%}" type="text/javascript"></script>
+
+	<!--  Plugins -->
+	<script src="{% static 'front/js/gsdk-checkbox.js'%}"></script>
+	<script src="{% static 'front/js/gsdk-morphing.js'%}"></script>
+	<script src="{% static 'front/js/gsdk-radio.js'%}"></script>
+	<script src="{% static 'front/js/gsdk-bootstrapswitch.js'%}"></script>
+	<script src="{% static 'front/js/bootstrap-select.js'%}"></script>
+	<script src="{% static 'front/js/bootstrap-datepicker.js'%}"></script>
+	<script src="{% static 'front/js/chartist.min.js'%}"></script>
+    <script src="{% static 'front/js/jquery.tagsinput.js'%}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!--  Get Shit Done Kit PRO Core javascript 	 -->
+	<script src="{% static 'front/js/get-shit-done.js'%}"></script>
+
+    <script type="text/javascript">
+        var big_image;
+        $().ready(function(){
+            responsive = $(window).width();
+
+            $(window).on('scroll', gsdk.checkScrollForTransparentNavbar);
+
+            if (responsive >= 768){
+                big_image = $('.parallax-image').find('img');
+
+                $(window).on('scroll',function(){
+                    parallax();
+                });
+            }
+
+        });
+
+       var parallax = function() {
+            var current_scroll = $(this).scrollTop();
+
+            oVal = ($(window).scrollTop() / 3);
+            big_image.css('top',oVal);
+        };
+
+    </script>
+
+    <!-- If you are using TypeKit.com uncomment this code otherwise you can delete it -->
+    <!--
+    <script src="https://use.typekit.net/[your kit code here].js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    -->
+
+    <!-- If you have retina @2x images on your server which can be sent to iPhone/iPad/MacRetina, please uncomment the next line, otherwise you can delete it -->
+	<!-- <script src="assets/js/retina.min.js"></script> -->
+
+</html>

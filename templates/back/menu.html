@@ -1,0 +1,52 @@
+{% load static %}
+<div class="sidebar-wrapper">
+    <div class="user">
+        <div class="photo">
+            <img src="{% static 'back/img/faces/face-2.jpg' %}" />
+        </div>
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <span>
+                    {{user}}
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <div class="clearfix"></div>
+
+            <div class="collapse" id="collapseExample">
+                <ul class="nav">
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="sidebar-mini">L</span>
+                            <span class="sidebar-normal">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ul class="nav">
+        <li>
+            <a href="{% url 'tabel_spek' %}">
+                <i class="ti-view-list-alt"></i>
+                <p>Tabel Spek HP</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'tabel_info' %}">
+                <i class="ti-view-list-alt"></i>
+                <p>Tabel Info Hp</p>
+            </a>
+        </li>
+        {% if request.session.is_operator == "operator" %}
+           <li>
+                <a href="{% url 'tabel_users' %}">
+                    <i class="ti-calendar"></i>
+                    <p>Tabel Users</p>
+                </a>
+            </li> 
+        {% endif %}
+            
+        
+    </ul>
+</div>
